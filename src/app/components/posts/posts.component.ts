@@ -1,9 +1,9 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { Post } from 'src/app/models/Post';
-import { PostService } from 'src/app/services/post.service';
+import {HttpClient} from '@angular/common/http';
+import {Component, Input, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Observable} from 'rxjs';
+import {Post} from 'src/app/models/Post';
+import {PostService} from 'src/app/services/post.service';
 
 @Component({
   selector: 'app-posts',
@@ -17,18 +17,24 @@ export class PostsComponent implements OnInit {
   @Input()
   userId: number;
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router
-      , private postService: PostService) {
-   
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private postService: PostService) {
+
     this.activatedRoute.params.subscribe(value => {
-     this.userId = this.router.getCurrentNavigation().extras.state.id})
-          
-    }
-    
-    ngOnInit(): void{
-      this.postService.getPost().subscribe( value =>  {this.posts = value})
-        //console.log(value)))
-      console.log(this.posts)
+      this.userId = this.router.getCurrentNavigation().extras.state.id;
+    });
+    this.postService.getPost().subscribe(value => {
+      this.posts = value;
+    });
+
+  }
+
+  ngOnInit(): void {
+
+    //console.log(value)))
+    console.log(this.posts);
   }
 
 }
